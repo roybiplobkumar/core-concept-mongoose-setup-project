@@ -29,7 +29,7 @@
   "releaseDate": "2010-07-16",
   "genre": "Thriller",
   "isDeleted": false,
-  "viewCount":0,
+  "viewCount": 0,
   "reviews": [
     {
       "email": "example1@example.com",
@@ -57,7 +57,7 @@
     "releaseDate": "2010-07-16",
     "genre": "Thriller",
     "isDeleted": false,
-    "viewCount":0,
+    "viewCount": 0,
     "reviews": [
       {
         "email": "example1@example.com",
@@ -132,7 +132,7 @@
     "releaseDate": "2010-07-16",
     "genre": "Thriller",
     "isDeleted": false,
-    "viewCount":0,
+    "viewCount": 0,
     "reviews": [
       {
         "email": "example1@example.com",
@@ -166,8 +166,8 @@
   "description": "A thief who enters the dreams of others to steal their secrets from their subconscious gets a chance to redeem himself by planting an idea into the mind of a CEO.",
   "releaseDate": "2010-07-16",
   "genre": "Sci-Fi, Action, Thriller",
-   "isDeleted": false,
-   "viewCount":0,
+  "isDeleted": false,
+  "viewCount": 0,
   "reviews": [
     {
       "email": "example1@example.com",
@@ -199,8 +199,8 @@
     "description": "A thief who enters the dreams of others to steal their secrets from their subconscious gets a chance to redeem himself by planting an idea into the mind of a CEO.",
     "releaseDate": "2010-07-16",
     "genre": "Sci-Fi, Action, Thriller",
-     "isDeleted": false,
-     "viewCount":0,
+    "isDeleted": false,
+    "viewCount": 0,
     "reviews": [
       {
         "email": "example1@example.com",
@@ -309,8 +309,8 @@
       "description": "A thief who enters the dreams of others to steal their secrets from their subconscious gets a chance to redeem himself by planting an idea into the mind of a CEO.",
       "releaseDate": "2010-07-16",
       "genre": "Sci-Fi, Action, Thriller",
-       "isDeleted": false,
-       "viewCount":0,
+      "isDeleted": false,
+      "viewCount": 0,
       "reviews": [
         {
           "email": "example1@example.com",
@@ -334,8 +334,8 @@
       "description": "When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
       "releaseDate": "2008-07-18",
       "genre": "Action, Crime, Drama",
-       "isDeleted": false,
-       "viewCount":0,
+      "isDeleted": false,
+      "viewCount": 0,
       "reviews": [
         {
           "email": "reviewer1@example.com",
@@ -369,8 +369,8 @@
       "description": "A young nobleman leads desert warriors against the galactic emperor and his father's evil nemesis when they assassinate his father and free their desert world from the emperor's rule.",
       "releaseDate": "2023-10-01",
       "genre": "Sci-Fi, Adventure, Drama",
-       "isDeleted": false,
-       "viewCount":0,
+      "isDeleted": false,
+      "viewCount": 0,
       "reviews": [
         {
           "email": "reviewer1@example.com",
@@ -413,9 +413,9 @@
       "description": "James Bond has left active service. His peace is short-lived when Felix Leiter, an old friend from the CIA, turns up asking for help, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.",
       "releaseDate": "2021-10-08",
       "genre": "Action, Adventure, Thriller",
-       "isDeleted": false,
-       "viewCount":0,
-       "reviews": [
+      "isDeleted": false,
+      "viewCount": 0,
+      "reviews": [
         {
           "email": "reviewer1@example.com",
           "rating": 5,
@@ -433,8 +433,8 @@
       "description": "Peter Parker's world turns upside down when he is unmasked as Spider-Man, and his identity is revealed. With his friends and loved ones in danger, Peter must confront powerful foes while dealing with the fallout of his secret being exposed.",
       "releaseDate": "2021-12-17",
       "genre": "Action, Adventure, Fantasy",
-       "isDeleted": false,
-       "viewCount":0,
+      "isDeleted": false,
+      "viewCount": 0,
       "reviews": [
         {
           "email": "reviewer3@example.com",
@@ -482,7 +482,7 @@ jsonCopy code
     "releaseDate": "2010-07-16",
     "genre": "Sci-Fi, Action, Thriller",
     "isDeleted": false,
-     "viewCount":0,
+    "viewCount": 0,
     "reviews": [
       {
         "email": "example1@example.com",
