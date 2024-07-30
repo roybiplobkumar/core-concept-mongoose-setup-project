@@ -5,7 +5,12 @@ const crateMovieIntoDB = async (payload: TMoies) => {
   const result = await Movie.create(payload);
   return result;
 };
+const getAllMoviesIntoDB= async ()=>{
+  const result = await  Movie.find();
+  return  result;
+}
 
 export const MovieServices = {
   crateMovieIntoDB,
+  getAllMoviesIntoDB
 };
