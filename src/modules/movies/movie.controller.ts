@@ -35,28 +35,26 @@ const getAllMovies = async (req: Request, res: Response) => {
     });
   }
 };
-const getSingleMovieBySlug= async (req:Request, res:Response)=>{
-   try{
-    const slug=req.params.slug;
-    const result= await MovieServices.getSingelMovieIntoDBBySlug(slug);
-     res.status(200).json({
-      success:true,
-      message: "Movie Retrive Successfully",
-      data:result,
-     })
-   }catch(err:any){
-        res.status(500).json({
-          success:false, 
-          message: err.message||"someting woring ",
-          err:err
-
-        })
-   }
-
-}
+const getSingleMovieBySlug = async (req: Request, res: Response) => {
+  try {
+    const slug = req.params.slug;
+    const result = await MovieServices.getSingelMovieIntoDBBySlug(slug);
+    res.status(200).json({
+      success: true,
+      message: 'Movie Retrive Successfully',
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || 'someting woring ',
+      err: err,
+    });
+  }
+};
 
 export const MovieController = {
   createMovie,
   getAllMovies,
-  getSingleMovieBySlug
+  getSingleMovieBySlug,
 };
