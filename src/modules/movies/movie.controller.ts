@@ -35,10 +35,10 @@ const getAllMovies = async (req: Request, res: Response) => {
     });
   }
 };
-const getSingleMovie= async (req:Request, res:Response)=>{
+const getSingleMovieBySlug= async (req:Request, res:Response)=>{
    try{
-    const id=req.params.id;
-    const result= await MovieServices.getSingelMovieIntoDB(id);
+    const slug=req.params.slug;
+    const result= await MovieServices.getSingelMovieIntoDBBySlug(slug);
      res.status(200).json({
       success:true,
       message: "Movie Retrive Successfully",
@@ -58,5 +58,5 @@ const getSingleMovie= async (req:Request, res:Response)=>{
 export const MovieController = {
   createMovie,
   getAllMovies,
-  getSingleMovie
+  getSingleMovieBySlug
 };

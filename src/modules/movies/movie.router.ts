@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/', MovieController.createMovie);
 router.get('/', MovieController.getAllMovies);
-router.get('/:id', MovieController.getSingleMovie)
+router.get('/:slug', MovieController.getSingleMovieBySlug)
 
 export const MovieRouter = router;

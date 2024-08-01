@@ -9,8 +9,8 @@ const getAllMoviesIntoDB = async () => {
   const result = await Movie.find();
   return result;
 };
-const getSingelMovieIntoDB=async (id:string)=>{
-   const result= await Movie.findById(id);
+const getSingelMovieIntoDBBySlug=async (slug:string)=>{
+   const result= await Movie.findById(slug);
    return result;
 
 }
@@ -18,6 +18,6 @@ const getSingelMovieIntoDB=async (id:string)=>{
 export const MovieServices = {
   crateMovieIntoDB,
   getAllMoviesIntoDB,
-  getSingelMovieIntoDB
+  getSingelMovieIntoDBBySlug
 };
 
