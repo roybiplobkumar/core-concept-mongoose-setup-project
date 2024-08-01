@@ -1,10 +1,14 @@
 import { TMoies } from './movie.interface';
 import { Movie } from './movie.model';
 import {  format } from "date-fns";
+import slugify from "slugify"
 
 const crateMovieIntoDB = async (payload: TMoies) => {
    const date= format(payload.releaseDate,"dd-MM-yyyy");
    console.log(date);
+    
+    const slug= slugify(`${payload.title}-${date}`);
+    console.log(slug)
   // const result = await Movie.create(payload);
   // return result;
 };
