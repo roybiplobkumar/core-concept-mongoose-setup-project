@@ -1,7 +1,8 @@
 import { model, Schema } from 'mongoose';
-import { TMoies, TReviews } from './movie.interface';
+import { TMoies, TMovieMethods, TMovieModel, TReviews } from './movie.interface';
 import { format } from 'date-fns';
 import slugify from 'slugify';
+
 const reviewsSchema = new Schema<TReviews>({
   email: {
     type: String,
@@ -17,7 +18,7 @@ const reviewsSchema = new Schema<TReviews>({
   },
 });
 
-const movieSchema = new Schema<TMoies>({ 
+const movieSchema = new Schema<TMoies,TMovieModel,TMovieMethods>({ 
   title: { type: String, required: true },
   description: {
     type: String,
@@ -47,14 +48,22 @@ const movieSchema = new Schema<TMoies>({
 });
 
 // mongoose pre midlewere hook use   
-  movieSchema.pre('save', async function(next){
-      const date=format(this.releaseDate, "dd-MM-yyyy")
-      this.slug=slugify(`${this.title}-${date}`, {lower:true})
-      console.log(this.slug)
-      next()
-  }
+//   movieSchema.pre('save', async function(next){
+//       const date=format(this.releaseDate, "dd-MM-yyyy")
+//       this.slug=slugify(`${this.title}-${date}`, {lower:true})
+//       console.log(this.slug)
+//       next()
+//   }
 
-)
+// )
+
+
+movieSchema.method('crateSluge', function crateSluge(payload:TMoies){
+  const date=format(payload.releaseDate, "dd-MM-yyyy")
+        const slug=slugify(`${payload.title}-${date}`, {lower:true});
+        return slug;
+});
+
 
 // crate a model
-export const Movie = model<TMoies>('Movie', movieSchema);
+export const Movie = model<TMoies,TMovieModel>('Movie', movieSchema);

@@ -10,9 +10,16 @@ const crateMovieIntoDB = async (payload: TMoies) => {
   //     lower:true
   //   });
   //   console.log(slug)
-   
-  const result = await Movie.create({...payload});
-  return result;
+  // const result = await Movie.create(payload);
+  // return result;
+
+  const result = new Movie(payload);
+  const slug=result.crateSluge(payload); 
+    result.slug=slug
+    await result.save();
+    return result;
+  
+ 
 };
 const getAllMoviesIntoDB = async () => {
   const result = await Movie.find();
