@@ -1,18 +1,17 @@
 import { TMoies } from './movie.interface';
 import { Movie } from './movie.model';
-import {  format } from "date-fns";
-import slugify from "slugify"
+
 
 const crateMovieIntoDB = async (payload: TMoies) => {
-   const date= format(payload.releaseDate,"dd-MM-yyyy");
-   console.log(date);
+  //  const date= format(payload.releaseDate,"dd-MM-yyyy");
+  //  console.log(date);
     
-    const slug= slugify(`${payload.title}-${date}`, {
-      lower:true
-    });
-    console.log(slug)
+  //   const slug= slugify(`${payload.title}-${date}`, {
+  //     lower:true
+  //   });
+  //   console.log(slug)
    
-  const result = await Movie.create({...payload, slug});
+  const result = await Movie.create({...payload});
   return result;
 };
 const getAllMoviesIntoDB = async () => {

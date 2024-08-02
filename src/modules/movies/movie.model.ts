@@ -1,5 +1,7 @@
 import { model, Schema } from 'mongoose';
 import { TMoies, TReviews } from './movie.interface';
+import { format } from 'date-fns';
+import slugify from 'slugify';
 const reviewsSchema = new Schema<TReviews>({
   email: {
     type: String,
@@ -41,9 +43,18 @@ const movieSchema = new Schema<TMoies>({
     type: [reviewsSchema],
   },
   slug:{type:String,
-    required:[true, "sluge is  require"]
   }
 });
+
+// mongoose pre midlewere hook use   
+  movieSchema.pre('save', async function(next){
+      const date=format(this.releaseDate, "dd-MM-yyyy")
+      this.slug=slugify(`${this.title}-${date}`, {lower:true})
+      console.log(this.slug)
+      next()
+  }
+
+)
 
 // crate a model
 export const Movie = model<TMoies>('Movie', movieSchema);
