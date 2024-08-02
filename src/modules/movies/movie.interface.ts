@@ -11,5 +11,5 @@ export type TMoies = {
   isDeleted: boolean;
   viewCount: number;
   reviews: [TReviews];
-  sluge: string;
+  slug:string,
 };

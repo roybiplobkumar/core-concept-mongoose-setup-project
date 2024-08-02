@@ -15,7 +15,7 @@ const reviewsSchema = new Schema<TReviews>({
   },
 });
 
-const movieSchema = new Schema<TMoies>({
+const movieSchema = new Schema<TMoies>({ 
   title: { type: String, required: true },
   description: {
     type: String,
@@ -40,6 +40,9 @@ const movieSchema = new Schema<TMoies>({
   reviews: {
     type: [reviewsSchema],
   },
+  slug:{type:String,
+    required:[true, "sluge is  require"]
+  }
 });
 
 // crate a model
