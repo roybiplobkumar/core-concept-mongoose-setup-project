@@ -1,10 +1,5 @@
+/* eslint-disable no-unused-vars */
 import { Model } from "mongoose";
-
-export type TReviews = {
-  email: string;
-  rating: number;
-  comment: string;
-};
 export type TMoies = {
   title: string;
   description: string;
@@ -12,7 +7,6 @@ export type TMoies = {
   genre: string;
   isDeleted: boolean;
   viewCount: number;
-  reviews: [TReviews];
   slug:string,
 };
 
