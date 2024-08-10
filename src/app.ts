@@ -13,5 +13,12 @@ app.get('/', (req: Request, res: Response) => {
 });
 
  app.use(notFound)
-
+ app.use(( err:any,req:Request, res:Response, next:NextFunction ,)=>{
+  res.status(500).json({
+    success:false,
+    message:err.errors.movie.message||"something worng",
+    error:err
+  })
+ })
+ 
 export default app;
