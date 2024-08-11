@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Model } from "mongoose";
+import { Model } from 'mongoose';
 export type TMoies = {
   title: string;
   description: string;
@@ -7,15 +7,14 @@ export type TMoies = {
   genre: string;
   isDeleted: boolean;
   viewCount: number;
-  slug:string,
+  slug: string;
 };
 
-
-//  Use Instance method  to create slug 
+//  Use Instance method  to create slug
 
 // Put all user instance methods in this interface:
-export type  TMovieMethods= {
-  crateSluge(payload:TMoies): string;
-}
+export type TMovieMethods = {
+  crateSluge(payload: TMoies): string;
+};
 // Create a new Model type that knows about IUserMethods...
- export type TMovieModel = Model<TMoies, Record<string, unknown>, TMovieMethods>;
+export type TMovieModel = Model<TMoies, Record<string, unknown>, TMovieMethods>;

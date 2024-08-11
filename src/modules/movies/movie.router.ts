@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/', MovieController.createMovie);
 router.get('/', MovieController.getAllMovies);
 router.get('/:slug', MovieController.getSingleMovieBySlug);
-router.post("/:slug/review", ReviewControllers.addReview);
+router.post('/:slug/review', ReviewControllers.addReview);
 
 export const MovieRouter = router;

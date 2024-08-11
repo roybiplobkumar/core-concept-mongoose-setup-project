@@ -1,7 +1,7 @@
-import { Types } from "mongoose";
+import { Types } from 'mongoose';
 
 export type TReviews = {
-  movie:Types.ObjectId;
+  movie: Types.ObjectId;
   email: string;
   rating: number;
   comment: string;

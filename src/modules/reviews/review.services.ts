@@ -1,22 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Movie } from "../movies/movie.model";
-import { TReviews } from "./review.interface";
-import { Review } from "./review.model";
+import { Movie } from '../movies/movie.model';
+import { TReviews } from './review.interface';
+import { Review } from './review.model';
 
 const addReview = async (
   slug: string,
-  reviewData: Partial<TReviews>
+  reviewData: Partial<TReviews>,
 ): Promise<TReviews | any> => {
   const session = await Movie.startSession();
-
 
   const movie = await Movie.findOne({ slug });
 
   if (!movie) {
-    throw new Error("Movie not found");
+    throw new Error('Movie not found');
   }
-
 
   try {
     session.startTransaction();
@@ -28,7 +26,7 @@ const addReview = async (
           ...reviewData,
         },
       ],
-      { session }
+      { session },
     );
 
     const reviewsCount = await Review.countDocuments({

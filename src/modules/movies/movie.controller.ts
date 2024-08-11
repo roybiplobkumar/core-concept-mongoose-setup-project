@@ -22,28 +22,30 @@ import { z } from 'zod';
 //   }
 // };
 
-const zodValidationSchema=z.object({
-  title:z.string(),
-  description:z.string(),
-  releaseDate:z.string(),
-  genre:z.string(),
-  isDeleted:z.boolean(),
-  viewCount:z.number(),
-  slug:z.string().optional()
-})
+const zodValidationSchema = z.object({
+  body: z.object({
+    title: z.string(),
+    description: z.string(),
+    releaseDate: z.string(),
+    genre: z.string(),
+    isDeleted: z.boolean(),
+    viewCount: z.number(),
+    slug: z.string().optional(),
+  }),
+});
 
-
-
-const createMovie =catchAsync(async(req:Request,res:Response, next:NextFunction)=>{
-  const movieData = req.body;
-     zodValidationSchema.parse(movieData);
-  const result = await MovieServices.crateMovieIntoDB(movieData);
-  res.status(200).json({
-    success: true,
-    message: 'movie create succesfully',
-    data: result,
-  });
-})
+const createMovie = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const movieData = req.body;
+    zodValidationSchema.parse({ body: movieData });
+    const result = await MovieServices.crateMovieIntoDB(movieData);
+    res.status(200).json({
+      success: true,
+      message: 'movie create succesfully',
+      data: result,
+    });
+  },
+);
 
 // const getAllMovies = async (req: Request, res: Response) => {
 //   try {
@@ -61,14 +63,16 @@ const createMovie =catchAsync(async(req:Request,res:Response, next:NextFunction)
 //     });
 //   }
 // };
-const getAllMovies=catchAsync(async (req:Request, res:Response, next:NextFunction)=>{
-  const result = await MovieServices.getAllMoviesIntoDB();
-      res.status(200).json({
-        success: true,
-        message: 'ALL Movie Retrive successFully',
-        data: result,
-      });
-})
+const getAllMovies = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const result = await MovieServices.getAllMoviesIntoDB();
+    res.status(200).json({
+      success: true,
+      message: 'ALL Movie Retrive successFully',
+      data: result,
+    });
+  },
+);
 // const getSingleMovieBySlug = async (req: Request, res: Response) => {
 //   try {
 //     const slug = req.params.slug;
@@ -86,15 +90,17 @@ const getAllMovies=catchAsync(async (req:Request, res:Response, next:NextFunctio
 //     });
 //   }
 // };
-const getSingleMovieBySlug=catchAsync(async (req:Request, res:Response, next:NextFunction)=>{
-  const slug = req.params.slug;
+const getSingleMovieBySlug = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const slug = req.params.slug;
     const result = await MovieServices.getSingelMovieIntoDBBySlug(slug);
     res.status(200).json({
       success: true,
       message: 'Movie Retrive Successfully',
       data: result,
     });
-})
+  },
+);
 
 export const MovieController = {
   createMovie,
