@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { MovieServices } from './movie.service';
 import { catchAsync } from '../utils/catchAsync';
-import { Response } from 'express';
 import { NextFunction } from 'express';
+import { z } from 'zod';
 
 // const createMovie = async (req: Request, res: Response) => {
 //   try {
@@ -22,8 +22,21 @@ import { NextFunction } from 'express';
 //   }
 // };
 
+const zodValidationSchema=z.object({
+  title:z.string(),
+  description:z.string(),
+  releaseDate:z.string(),
+  genre:z.string(),
+  isDeleted:z.boolean(),
+  viewCount:z.number(),
+  slug:z.string().optional()
+})
+
+
+
 const createMovie =catchAsync(async(req:Request,res:Response, next:NextFunction)=>{
   const movieData = req.body;
+     zodValidationSchema.parse(movieData);
   const result = await MovieServices.crateMovieIntoDB(movieData);
   res.status(200).json({
     success: true,
