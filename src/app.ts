@@ -3,6 +3,7 @@ import { MovieRouter } from './modules/movies/movie.router';
 import { notFound } from './middleware/NotFound';
 import { globalErrorHandler } from './middleware/gobalErrorHandler';
 
+
 const app = express();
 //  persers
 app.use(express.json());

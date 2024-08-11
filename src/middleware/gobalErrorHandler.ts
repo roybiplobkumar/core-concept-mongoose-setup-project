@@ -3,6 +3,7 @@ import { ErrorRequestHandler } from "express";
 import { handleValidationError } from "../error/handleValidationError";
 import { TErrorsources } from "../interface/error.interface";
 import { handleCastError } from "../error/handleCastError";
+import { handleDublicatedError } from "../error/handleDublicatedError";
 
 export const globalErrorHandler:ErrorRequestHandler=(err, req, res, next)=>{
   let statusCode=500;
@@ -19,11 +20,16 @@ export const globalErrorHandler:ErrorRequestHandler=(err, req, res, next)=>{
      errorSources=simplified?.errorSources
     
   }
- 
    else if(err.name=="CastError"){
       const simplified=handleCastError(err)
       errorSources=simplified
    }
+  else if(err.code===11000){
+        const simplified=handleDublicatedError(err)
+        errorSources=simplified
+        console.log(errorSources)
+  }
+
 
 
   res.status(statusCode).json({
