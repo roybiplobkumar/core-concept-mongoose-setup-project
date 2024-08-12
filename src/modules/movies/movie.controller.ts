@@ -3,6 +3,7 @@ import { MovieServices } from './movie.service';
 import { catchAsync } from '../utils/catchAsync';
 import { NextFunction } from 'express';
 import { z } from 'zod';
+import { zodMovieSchema } from './movie.validation';
 
 // const createMovie = async (req: Request, res: Response) => {
 //   try {
@@ -22,22 +23,12 @@ import { z } from 'zod';
 //   }
 // };
 
-const zodValidationSchema = z.object({
-  body: z.object({
-    title: z.string(),
-    description: z.string(),
-    releaseDate: z.string(),
-    genre: z.string(),
-    isDeleted: z.boolean(),
-    viewCount: z.number(),
-    slug: z.string().optional(),
-  }),
-});
+
 
 const createMovie = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const movieData = req.body;
-    zodValidationSchema.parse({ body: movieData });
+     zodMovieSchema.creatZodValidationSchema.parse({ body: movieData });
     const result = await MovieServices.crateMovieIntoDB(movieData);
     res.status(200).json({
       success: true,

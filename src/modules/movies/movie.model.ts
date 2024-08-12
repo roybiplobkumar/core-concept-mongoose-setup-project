@@ -26,6 +26,10 @@ const movieSchema = new Schema<TMoies, TMovieModel, TMovieMethods>({
     required: true,
   },
   slug: { type: String },
+  movieName:{
+    type:String,
+    enum:["baba kano charkor", "sathi", "tumi kar"]
+  }
 });
 
 // mongoose pre midlewere hook use

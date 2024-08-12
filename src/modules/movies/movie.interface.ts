@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Model } from 'mongoose';
+
 export type TMoies = {
   title: string;
   description: string;
@@ -8,6 +9,7 @@ export type TMoies = {
   isDeleted: boolean;
   viewCount: number;
   slug: string;
+  movieName:"Baba Kano chakor" |"sathi" | "tumi kar "
 };
 
 //  Use Instance method  to create slug
