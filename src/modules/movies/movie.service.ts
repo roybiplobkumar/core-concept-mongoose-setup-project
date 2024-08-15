@@ -1,4 +1,4 @@
-import { string, unknown } from 'zod';
+import { number, string, unknown } from 'zod';
 import AppError from '../../error/AppError';
 import { TMoies } from './movie.interface';
 import { Movie } from './movie.model';
@@ -40,13 +40,27 @@ const getAllMoviesIntoDB = async (payload:Record<string,unknown>) => {
     }
   )
 
+  //  paginatiion 
+  let limit :number=Number(payload.limit||10)  
+  let skip:number=0;
+  if(payload.page){
+      const page =Number(payload.page ||1)
+      skip=Number(page-1)*limit
+  }
+
+  const skipQuery=searchMovies.skip(skip);
+  const limitQuery=skipQuery.limit(limit)
+
+
+
+  // filtering 
   const queryObj={...payload}
   const excludeFieds=['searchTerm']
   excludeFieds.forEach(e=>(
     delete queryObj[e]
   ))
  
-    const result =await searchMovies.find(queryObj)
+    const result =await limit.find(queryObj)
     return result
 };
 const getSingelMovieIntoDBBySlug = async (slug: string) => {
