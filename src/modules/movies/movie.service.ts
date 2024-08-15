@@ -1,3 +1,4 @@
+import AppError from '../../error/AppError';
 import { TMoies } from './movie.interface';
 import { Movie } from './movie.model';
 
@@ -11,7 +12,7 @@ const crateMovieIntoDB = async (payload: TMoies) => {
   //   console.log(slug)
   // const result = await Movie.create(payload);
   // return result;
-
+   throw new AppError(401,"testing app error", 'not')
   const result = new Movie(payload);
   const slug = result.crateSluge(payload);
   result.slug = slug;
@@ -19,6 +20,7 @@ const crateMovieIntoDB = async (payload: TMoies) => {
   return result;
 };
 const getAllMoviesIntoDB = async () => {
+  throw new Error("this is custom  error")
   const result = await Movie.find();
   return result;
 };
