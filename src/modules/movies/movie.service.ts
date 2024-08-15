@@ -1,3 +1,4 @@
+import { string, unknown } from 'zod';
 import AppError from '../../error/AppError';
 import { TMoies } from './movie.interface';
 import { Movie } from './movie.model';
@@ -28,18 +29,25 @@ const getAllMoviesIntoDB = async (payload:Record<string,unknown>) => {
     searchTerm=payload?.genre as string
   }
   const searchAbleFields=["title", 'genre']
-  console.log(searchTerm)
+
 
  
-  const result = await Movie.find(
+  const searchMovies =  Movie.find(
     {
       $or:searchAbleFields.map(fied=>({
         [fied]:{$regex:searchTerm, $options:"i"}
       }))
     }
   )
-  
-  return result;
+
+  const queryObj={...payload}
+  const excludeFieds=['searchTerm']
+  excludeFieds.forEach(e=>(
+    delete queryObj[e]
+  ))
+ 
+    const result =await searchMovies.find(queryObj)
+    return result
 };
 const getSingelMovieIntoDBBySlug = async (slug: string) => {
   const result = await Movie.findOne({ slug: slug });
