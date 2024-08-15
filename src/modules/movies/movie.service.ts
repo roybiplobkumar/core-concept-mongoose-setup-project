@@ -19,9 +19,26 @@ const crateMovieIntoDB = async (payload: TMoies) => {
   await result.save();
   return result;
 };
-const getAllMoviesIntoDB = async () => {
-  throw new Error("this is custom  error")
-  const result = await Movie.find();
+const getAllMoviesIntoDB = async (payload:Record<string,unknown>) => {
+  let searchTerm="";
+  if(payload?.searchTerm){
+    searchTerm=payload.searchTerm as string;
+  }
+  if(payload?.genre){
+    searchTerm=payload?.genre as string
+  }
+  const searchAbleFields=["title", 'genre']
+  console.log(searchTerm)
+
+ 
+  const result = await Movie.find(
+    {
+      $or:searchAbleFields.map(fied=>({
+        [fied]:{$regex:searchTerm, $options:"i"}
+      }))
+    }
+  )
+  
   return result;
 };
 const getSingelMovieIntoDBBySlug = async (slug: string) => {

@@ -56,7 +56,7 @@ const createMovie = catchAsync(
 // };
 const getAllMovies = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const result = await MovieServices.getAllMoviesIntoDB();
+    const result = await MovieServices.getAllMoviesIntoDB(req.query);
     res.status(200).json({
       success: true,
       message: 'ALL Movie Retrive successFully',
