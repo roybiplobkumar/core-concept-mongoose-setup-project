@@ -54,21 +54,28 @@ const getAllMoviesIntoDB = async (payload:Record<string,unknown>) => {
     // sortings
     let sortBy="releaseDate" 
     if(payload.sortBy){
-      sortBy=payload.sortBy 
+      sortBy=payload.sortBy as string
     }
 
 const sortQuety= limitQuery.sort(sortBy);
 
+// fields filtering 
+  const fields =(payload.fields as string).split(',').join("") ||'';
+
+  const fielsQurey = sortQuety.select(fields);
+ 
+
+
   // filtering 
   const queryObj={...payload}
 
-  const excludeFieds=['searchTerm','page','limit', "sortBy"]
+  const excludeFieds=['searchTerm','page','limit', "sortBy","fields"]
   excludeFieds.forEach(e=>(
     delete queryObj[e]
   ))
 
  
-    const result =await sortQuety.find(queryObj)
+    const result =await fielsQurey.find(queryObj)
     return result
 };
 const getSingelMovieIntoDBBySlug = async (slug: string) => {
