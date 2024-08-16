@@ -1,5 +1,4 @@
 import { number, string, unknown } from 'zod';
-import AppError from '../../error/AppError';
 import { TMoies } from './movie.interface';
 import { Movie } from './movie.model';
 
@@ -13,7 +12,7 @@ const crateMovieIntoDB = async (payload: TMoies) => {
   //   console.log(slug)
   // const result = await Movie.create(payload);
   // return result;
-   throw new AppError(401,"testing app error", 'not')
+
   const result = new Movie(payload);
   const slug = result.crateSluge(payload);
   result.slug = slug;
@@ -41,26 +40,27 @@ const getAllMoviesIntoDB = async (payload:Record<string,unknown>) => {
   )
 
   //  paginatiion 
-  let limit :number=Number(payload.limit||10)  
-  let skip:number=0;
-  if(payload.page){
-      const page =Number(payload.page ||1)
-      skip=Number(page-1)*limit
+  const limit: number = Number(payload.limit || 10);
+  let skip: number = 0;
+  
+  if (payload.page) {
+      const page = Number(payload.page || 1);
+      
+      skip =Number( (page - 1) * limit);
   }
-
-  const skipQuery=searchMovies.skip(skip);
-  const limitQuery=skipQuery.limit(limit)
-
-
+  const skipQuery = searchMovies.skip(skip);
+  const limitQuery = skipQuery.limit(limit);
 
   // filtering 
   const queryObj={...payload}
-  const excludeFieds=['searchTerm']
+  console.log(queryObj)
+  const excludeFieds=['searchTerm','page','limit']
   excludeFieds.forEach(e=>(
     delete queryObj[e]
   ))
+  console.log(queryObj)
  
-    const result =await limit.find(queryObj)
+    const result =await limitQuery.find(queryObj)
     return result
 };
 const getSingelMovieIntoDBBySlug = async (slug: string) => {

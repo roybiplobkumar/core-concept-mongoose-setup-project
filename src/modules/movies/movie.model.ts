@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import slugify from 'slugify';
 
 const movieSchema = new Schema<TMoies, TMovieModel, TMovieMethods>({
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: true,  },
   description: {
     type: String,
     required: true,
