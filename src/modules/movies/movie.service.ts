@@ -20,17 +20,15 @@ const crateMovieIntoDB = async (payload: TMoies) => {
   return result;
 };
 const getAllMoviesIntoDB = async (payload:Record<string,unknown>) => {
+  // search  is parcial match  
+   
   let searchTerm="";
   if(payload?.searchTerm){
     searchTerm=payload.searchTerm as string;
   }
-  if(payload?.genre){
-    searchTerm=payload?.genre as string
-  }
+  
   const searchAbleFields=["title", 'genre']
 
-
- 
   const searchMovies =  Movie.find(
     {
       $or:searchAbleFields.map(fied=>({
@@ -60,13 +58,14 @@ const getAllMoviesIntoDB = async (payload:Record<string,unknown>) => {
 const sortQuety= limitQuery.sort(sortBy);
 
 // fields filtering 
-  const fields =(payload.fields as string).split(',').join("") ||'';
+  const fields =(payload.fields as string)?.split(',').join("") ||'';
 
   const fielsQurey = sortQuety.select(fields);
  
 
 
   // filtering 
+  // filtering  is actually match 
   const queryObj={...payload}
 
   const excludeFieds=['searchTerm','page','limit', "sortBy","fields"]
