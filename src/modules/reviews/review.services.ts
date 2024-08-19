@@ -10,7 +10,7 @@ const addReview = async (
 ): Promise<TReviews | any> => {
   const session = await Movie.startSession();
 
-  const movie = await Movie.findOne({ slug });
+  const movie = await Movie.findOne({ slug })
 
   if (!movie) {
     throw new Error('Movie not found');
